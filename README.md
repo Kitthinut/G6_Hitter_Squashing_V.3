@@ -26,9 +26,9 @@ Dive into the Wonderland here:
 
 ## 🧠 Technologies Used 💻
 
-- **HTML** for dreamy structure 🏗️  
-- **CSS** for an enchanting pastel-dark theme ✨  
-- **JavaScript** for magical physics and dynamic squashing 🦄
+- **HTML** for dreamy structure (Suffer #1) 🏗️  
+- **CSS** for an enchanting pastel-dark theme (only healing thing here)✨  
+- **JavaScript** for magical physics and dynamic squashing (Pure suffer-) 🦄
 
 ---
 
