@@ -4,6 +4,8 @@
 
 Welcome to **G6 Hitter Squashing V.3**, a whimsical web-based application created with passion and a sprinkle of magic! This app allows you to simulate the squash ball's trajectory when hit with an angle of your choosing 🎯. Customize your racket velocity, ball spin, and other quirky settings ⚙️ to experiment with distances and angles. With a cute, dreamy interface that feels like a stroll through a pastel Wonderland 🌸, you can enjoy every moment of your squashing adventure. It’s like playing squash in a world of clouds and cotton candy 🌤️🍬
 
+> **Disclaimer:** This project was created as part of a university assignment for the **FRA163: Science in Motion** subject. The app simulates the functionality of a squash machine designed for testing and training purposes. It’s meant to demonstrate principles of physics and motion in a playful and educational manner, showcasing our future skills and capabilities in robotics and simulation technology.  
+
 ---
 
 ## 🌸 Features
@@ -47,4 +49,4 @@ MIT License — Remix, share, and spread the magic 💜✨
 ## Contributing 🤝
 
 Want to sprinkle some extra magic on this project? ✨  
-Feel free to fork the repo, create an issue, or send a pull request! Every bit of love and con
+Feel free to fork the repo, create an issue, or send a pull request! Every bit of love and contribution is always appreciated 💖
