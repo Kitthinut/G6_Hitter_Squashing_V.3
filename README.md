@@ -20,7 +20,7 @@ Welcome to **G6 Hitter Squashing V.3**, a whimsical web-based application create
 ## 🚀 Getting Started
 
 Dive into the Wonderland here:  
-👉 **https://kitthinut.github.io/G6-Hitter-Squashing-V3/**
+👉 **https://kitthinut.github.io/G6_Hitter_Squashing_V.3/**
 
 ---
 
