@@ -15,13 +15,6 @@ Welcome to **G6 Hitter Squashing V.3**, a whimsical web-based application create
 
 ---
 
-## 📂 Project Structure
-
-G6-Squashing-V3/ ├── index.html # The fun world of squash begins here! ├── map_settings.html # Zone mapping made cute and interactive ├── settings.html # Where you fine-tune your settings to perfection ├── style.css # A pastel-dark Wonderland theme with a touch of magic ├── calculator.js # Calculates ball trajectory and magic angles ├── map_settings.js # All about adding, deleting, and customizing zones ├── settings.js # Save your magical customizations forever └── shared.js # Shared utility functions to power the magic
-
-
----
-
 ## 🚀 Getting Started
 
 Dive into the Wonderland here:  
