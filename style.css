@@ -14,6 +14,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-content: center; 
   flex-direction: column;
 }
 
@@ -107,7 +108,14 @@ body.settings-page {
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   text-align: center;
+  
+  z-index: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 
 /* Settings Title */
 .settings-container h2 {
@@ -196,3 +204,12 @@ body.settings-page .settings-link {
   text-align: center;
   align-self: center;
 }
+
+body.settings-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+}
+
