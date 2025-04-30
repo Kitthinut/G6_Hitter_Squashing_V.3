@@ -93,7 +93,7 @@ body {
   min-width: 250px;
   color: #e5d4ff;
   font-size: 1rem;
-  line-height: 1.6; /* Increased line height for readability */
+  line-height: 1.6; 
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
@@ -113,18 +113,18 @@ body {
 }
 
 .guide-panel li {
-  margin-bottom: 12px; /* Added space between steps for clarity */
+  margin-bottom: 12px; 
 }
 
 .guide-panel li::marker {
-  color: #d580ff; /* Custom bullet color */
-  font-size: 1.3rem; /* Increase bullet size for emphasis */
+  color: #d580ff; 
+  font-size: 1.3rem; 
 }
 
 /* Hover effect for guide panel */
 .guide-panel:hover {
-  transform: scale(1.02); /* Slightly enlarges on hover for emphasis */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+  transform: scale(1.02); 
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); 
 }
 
 /* ===== Main Container ===== */
@@ -244,7 +244,7 @@ h1 {
   }
 
   #mapCanvas {
-    max-height: 60vh; /* Allow more space for content */
+    max-height: 60vh; 
   }
 
   .settings-link {

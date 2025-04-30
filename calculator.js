@@ -1,19 +1,22 @@
 export class Calculator {
+  // Constructor: Initializes the calculator with the provided settings and default constants.
   constructor(settings) {
-    this.g = 9.81;
+    this.g = 9.81; // Gravitational acceleration
     this.settings = settings;
     this.racketMass = settings.racketMass;
     this.ballMass = settings.ballMass;
-    this.e = settings.e;
+    this.e = settings.e; // Coefficient of restitution
     this.uball = settings.uball;
     this.uracket = settings.uracket;
     this.h = settings.h;
   }
 
+  // Converts degrees to radians for angle calculations.
   toRadians(deg) {
     return deg * Math.PI / 180;
   }
 
+  // Calculates the horizontal and vertical components of the distance between two points.
   getDistanceComponents(realX, realY, startX, startY, scale) {
     const dx = (realX - startX) / scale;
     const dy = (realY - startY) / scale;
@@ -25,6 +28,7 @@ export class Calculator {
     };
   }
 
+  // Simulates the distance traveled by the ball given an angle.
   simulateDistance(thetaDeg) {
     const θ = this.toRadians(thetaDeg);
     const cosθ = Math.cos(θ);
@@ -55,9 +59,11 @@ export class Calculator {
     return distance;
   }
 
+  // Finds the best angle for a target distance, within a given tolerance.
   findBestAngle(targetDistance, tolerance = 0.05) {
     const matchingAngles = [];
 
+    // Iterate through possible angles to find those that match the target distance within tolerance.
     for (let theta = 1; theta <= 90; theta++) {
       const distance = this.simulateDistance(theta);
       if (distance === "Impossible") continue;
@@ -69,6 +75,7 @@ export class Calculator {
 
     if (matchingAngles.length === 0) return "Impossible";
 
+    // Create ranges for matching angles
     const ranges = [];
     let start = matchingAngles[0];
 

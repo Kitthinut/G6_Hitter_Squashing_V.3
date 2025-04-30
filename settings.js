@@ -12,7 +12,7 @@ export class Settings {
     this.ballMass = parseFloat(localStorage.getItem("ballMass")) || 0.024;
     this.e = parseFloat(localStorage.getItem("e")) || 0.42;
     this.uball = parseFloat(localStorage.getItem("uball")) || 5.87;
-    this.selectedMap = localStorage.getItem("selectedMap") || "map1.png"; // Store the selected map image
+    this.selectedMap = localStorage.getItem("selectedMap") || "map1.png"; 
   }
 
   // Initialize form and events
@@ -76,7 +76,7 @@ export class Settings {
   // Update the map preview when the map selection changes
   updateMapPreview() {
     const mapPreviewElement = this.mapPreview;
-    mapPreviewElement.src = `maps/${this.selectedMap}`; // Assuming maps are stored in 'images/' folder
+    mapPreviewElement.src = `maps/${this.selectedMap}`; 
   }
 }
 
