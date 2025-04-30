@@ -41,6 +41,7 @@ export class Settings {
   }
 
   saveSettings() {
+
     localStorage.setItem("selectedMap", this.mapSelection.value);
     localStorage.setItem(
       "racketMass",
@@ -50,6 +51,8 @@ export class Settings {
     localStorage.setItem("ballMass", document.getElementById("ballMass").value);
     localStorage.setItem("uracket", document.getElementById("uracket").value);
     localStorage.setItem("uball", document.getElementById("uball").value);
+
+    alert("Settings saved successfully!");
   }
 
   resetToDefault() {
