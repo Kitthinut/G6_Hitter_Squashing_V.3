@@ -79,7 +79,7 @@ h1 {
   display: block;
   margin-top: 20px;
   text-align: center;
-  color: #c7b4e5;
+  color: #8a77a9;
   text-decoration: none;
   font-size: 1.2rem;
 }
@@ -91,7 +91,7 @@ h1 {
 /* Settings Page */
 body.settings-page {
   background-color: #421152;
-  color: #f0e6ff;
+  color: #4b415b;
   font-family: "Trebuchet MS", sans-serif;
   display: flex;
   justify-content: center;
@@ -156,7 +156,7 @@ input[type="number"]:focus {
 /* Buttons */
 button {
   background-color: #C6A8E5;
-  color: white;
+  color: rgb(92, 35, 117);
   border: none;
   border-radius: 12px;
   padding: 12px 20px;

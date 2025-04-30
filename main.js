@@ -76,7 +76,7 @@ class MapApp {
     document.getElementById("angle").textContent = "Launch Angle: Impossible";
   } else {
     const rangeText = ranges
-      .map(r => `${r.min - 1}°– ${r.max + 3}°`)  // Adjust manually
+      .map(r => `${r.min - 1}°– ${r.max + 5}°`)  // Adjust manually
       .join(" or ");
     console.log(`Launch Angle: ${rangeText}`);
     document.getElementById("angle").textContent = `Launch Angle: ${rangeText}`;
