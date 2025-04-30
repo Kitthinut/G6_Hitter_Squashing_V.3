@@ -1,0 +1,212 @@
+/* ===== Reset & Base ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #2e003e;
+  font-family: "Trebuchet MS", sans-serif;
+  color: #f0e6ff;
+  display: block;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* ===== Background ===== */
+.background-tiles {
+  background: url("styling/background_tiles.png") repeat;
+  opacity: 0.2;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+}
+
+/* ===== Main Container ===== */
+.app-container {
+  width: 90%;
+  max-width: 950px;
+  margin: 20px auto;
+  padding: 40px;
+  background: rgba(82, 29, 103, 0.9);
+  border-radius: 20px;
+  border: 3px dashed #d580ff;
+  z-index: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Title ===== */
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #f9c6ff;
+  font-weight: bold;
+}
+
+/* ===== Canvas ===== */
+#mapCanvas {
+  background-color: #1a001f;
+  border: 3px solid #d580ff;
+  border-radius: 20px;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 80vh;
+  cursor: crosshair;
+  box-shadow: 0 0 20px #d580ff;
+}
+
+/* ===== Info Panel ===== */
+#infoPanel {
+  margin-top: 30px;
+  padding: 20px 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid #bb86fc;
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(221, 153, 255, 0.4);
+  text-align: center;
+  max-width: 600px;
+  width: 90%;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+#infoPanel:hover {
+  transform: scale(1.02);
+}
+
+/* ===== Info Panel Text ===== */
+#infoPanel p {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffe6ff;
+  text-shadow: 0 0 6px #cc8aff;
+  margin: 10px 0;
+}
+
+/* ===== Settings Link ===== */
+.settings-link {
+  display: block;
+  margin-top: 25px;
+  font-size: 1.2rem;
+  color: #e7d7ff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.settings-link:hover {
+  color: #dabfff;
+  text-decoration: underline;
+}
+
+/* ===== Bottom Text ===== */
+#bottomText {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  z-index: 2;
+}
+
+/* ===== Mobile Adjustments ===== */
+
+/* Portrait (Phones and smaller tablets) */
+@media only screen and (max-width: 768px) {
+  body {
+    padding: 0 10px;
+  }
+
+  .app-container {
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  #mapCanvas {
+    max-height: 60vh; /* Allow more space for content */
+  }
+
+  .settings-link {
+    font-size: 1rem;
+  }
+
+  #bottomText {
+    font-size: 0.8rem;
+    bottom: 5px;
+    right: 5px;
+  }
+}
+
+/* Landscape (Phones in landscape orientation) */
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  .app-container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  #mapCanvas {
+    max-height: 50vh; /* Even more space for content */
+  }
+
+  .settings-link {
+    font-size: 1rem;
+  }
+
+  #bottomText {
+    font-size: 0.8rem;
+  }
+}
+
+/* Tablet (portrait) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .app-container {
+    width: 80%;
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  #mapCanvas {
+    max-height: 70vh;
+  }
+}
+
+/* Landscape (Tablets in landscape orientation) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .app-container {
+    width: 85%;
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  #mapCanvas {
+    max-height: 60vh;
+  }
+}

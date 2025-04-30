@@ -2,7 +2,18 @@ import { mapData } from "./mapsettings.js";
 import { Calculator } from "./calculator.js";
 import { Settings } from "./settings.js";
 
+window.addEventListener('DOMContentLoaded', () => {
+  if (!localStorage.getItem('visitedBefore')) {
+    alert(`📌 วิธีใช้งาน:
+- คลิกบนแผนที่เพื่อเลือกเป้าหมายที่ต้องการ
+- กดปุ่มโซนเพื่อให้ระบบคำนวณมุมที่เหมาะสม
+- ไปที่หน้า "ตั้งค่า" เพื่อเลือกแผนที่และปรับค่าทางฟิสิกส์`);
+    localStorage.setItem('visitedBefore', 'true');
+  }
+});
+
 class MapApp {
+  
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
     this.ctx = this.canvas.getContext("2d");
