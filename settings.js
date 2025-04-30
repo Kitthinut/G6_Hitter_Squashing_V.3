@@ -1,59 +1,70 @@
-class SettingsApp {
-  constructor(formId) {
-      this.form = document.getElementById(formId);
-      this.resetBtn = document.getElementById('resetBtn');
-      this.mapSelection = document.getElementById('mapSelection');
-      this.init();
+export class Settings {
+  constructor(formId = "settingsForm") {
+    this.form = document.getElementById(formId);
+    this.mapSelection = document.getElementById("mapSelection");
+    this.resetBtn = document.getElementById("resetBtn");
+
+    console.log(this.form, this.mapSelection, this.resetBtn);  // Debugging
+
+    this.uracket = parseFloat(localStorage.getItem("uracket")) || 3.5;
+    this.h = parseFloat(localStorage.getItem("h")) || 0.27;
+    this.racketMass = parseFloat(localStorage.getItem("racketMass")) || 0.386;
+    this.ballMass = parseFloat(localStorage.getItem("ballMass")) || 0.024;
+    this.e = parseFloat(localStorage.getItem("e")) || 0.42;
+    this.uball = parseFloat(localStorage.getItem("uball")) || 5.87;
   }
 
   init() {
-      // Load previously selected map from localStorage
-      const selectedMap = localStorage.getItem('selectedMap') || "map1.png";
-      this.mapSelection.value = selectedMap;
+    const getOrDefault = (key, defaultVal) =>
+      localStorage.getItem(key) || defaultVal;
 
-      // Load other settings from localStorage
-      document.getElementById('u0').value = localStorage.getItem('u0') || 3.5;
-      document.getElementById('h').value = localStorage.getItem('h') || 0.27;
-      document.getElementById('racketMass').value = localStorage.getItem('racketMass') || 0.387;
-      document.getElementById('ballMass').value = localStorage.getItem('ballMass') || 0.024;
+    this.mapSelection.value = getOrDefault("selectedMap", "map1.png");
+    document.getElementById("racketMass").value = getOrDefault(
+      "racketMass",
+      0.386
+    );
+    document.getElementById("e").value = getOrDefault("e", 0.42);
+    document.getElementById("ballMass").value = getOrDefault("ballMass", 0.024);
+    document.getElementById("uball").value = getOrDefault("uball", 5.87);
+    document.getElementById("uracket").value = getOrDefault("uracket", 3.5);
 
-      // Handle form submission to save settings
-      this.form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          this.saveSettings();
-          window.location.href = "index.html"; // Redirect to main page
-      });
+    this.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.saveSettings();
+      window.location.href = "index.html";
+    });
 
-      // Handle reset button click
-      this.resetBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          this.resetToDefault();
-      });
+    this.resetBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.resetToDefault();
+    });
   }
 
   saveSettings() {
-      // Save map selection and other settings to localStorage
-      localStorage.setItem('selectedMap', this.mapSelection.value);
-      localStorage.setItem('u0', document.getElementById('u0').value);
-      localStorage.setItem('h', document.getElementById('h').value);
-      localStorage.setItem('racketMass', document.getElementById('racketMass').value);
-      localStorage.setItem('ballMass', document.getElementById('ballMass').value);
+    localStorage.setItem("selectedMap", this.mapSelection.value);
+    localStorage.setItem(
+      "racketMass",
+      document.getElementById("racketMass").value
+    );
+    localStorage.setItem("e", document.getElementById("e").value);
+    localStorage.setItem("ballMass", document.getElementById("ballMass").value);
+    localStorage.setItem("uracket", document.getElementById("uracket").value);
+    localStorage.setItem("uball", document.getElementById("uball").value);
   }
 
   resetToDefault() {
-      // Reset map selection to default (map1.png)
-      this.mapSelection.value = 'map1.png';
-
-      // Reset all other settings to default values
-      document.getElementById('u0').value = 3.5;
-      document.getElementById('h').value = 0.27;
-      document.getElementById('racketMass').value = 0.3;
-      document.getElementById('ballMass').value = 0.025;
-
-      // Save the default settings back to localStorage
-      this.saveSettings();
+    this.mapSelection.value = "map1.png";
+    document.getElementById("racketMass").value = 0.386;
+    document.getElementById("e").value = 0.42;
+    document.getElementById("ballMass").value = 0.024;
+    document.getElementById("uracket").value = 3.5;
+    document.getElementById("uball").value = 5.87;
+    this.saveSettings();
   }
 }
 
-// Initialize the settings app
-new SettingsApp('settingsForm');
+// Make sure that the DOM is fully loaded before initializing
+document.addEventListener("DOMContentLoaded", () => {
+  const settings = new Settings("settingsForm");
+  settings.init();
+});

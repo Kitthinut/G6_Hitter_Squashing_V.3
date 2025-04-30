@@ -1,6 +1,6 @@
 export const mapData = {
   "map1.png": { 
-      scale: 189, 
+      scale: 1944, 
       startX: 5010, 
       startY: 2000, 
       imgWidth: 5669,
