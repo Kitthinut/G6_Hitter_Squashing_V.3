@@ -2,24 +2,61 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>G6 : Hitter Squashing Simulation V.3</title>
+    <title>Hitter Squashing Simulation V.3</title>
     <link rel="stylesheet" href="css/style.css" />
     <script type="module" src="main.js" defer></script>
   </head>
   <body>
     <div class="background-tiles"></div>
 
-    <div class="app-container">
-      <h1>🏰 G6 : Hitter Squashing 🎩</h1>
-
-      <canvas id="mapCanvas" width="1920" height="1080"></canvas>
-
-      <div id="infoPanel">
-        <p id="distance">Distance: 0 m</p>
-        <p id="angle">Launch Angle: 0°</p>
+    <div class="layout-wrapper">
+      <!-- Left: Team Panel -->
+      <div class="team-panel">
+        <h2>チーム A DOF ヒッターズ</h2>
+        <p><strong>プロジェクト名：</strong>スカッシュトレーナー V3</p>
+        <ul>
+          <li><strong>Kitthinut C.</strong> – リード開発者</li>
+          <li><strong>Kitthinut C.</strong> – UI/UXデザイナー</li>
+          <li><strong>Kitthinut C.</strong> – 物理 & シミュレーション</li>
+          <li><strong>Kitthinut C.</strong> – テスト & 品質保証</li>
+        </ul>
+        <p class="motto">
+          「正確さと遊び心の融合 ― 賢くスカッシュを楽しもう！」
+        </p>
       </div>
 
-      <a class="settings-link" href="settings.html">⚙️ Settings</a>
+      <!-- Center: App Container -->
+      <div class="app-container">
+        <h1>Hitter Squashing Simulation V.3</h1>
+
+        <canvas id="mapCanvas" width="1920" height="1080"></canvas>
+
+        <div id="infoPanel">
+          <p id="distance">Distance: 0 m</p>
+          <p id="angle">Launch Angle: 0°</p>
+        </div>
+
+        <a class="settings-link" href="settings.html">⚙️ Settings</a>
+      </div>
+
+      <!-- Right: Guide Panel -->
+      <div class="guide-panel">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Click on the map to select the target point.</li>
+          <li>The distance and angle will be automatically calculated.</li>
+          <li>Use the calculated angle to hit the ball.</li>
+          <li>
+            You can adjust the racket and ball parameters in the
+          </li>"⚙️ Settings"
+            page.
+          </li>
+          <li>
+            Setting a target zone will help improve the accuracy of your
+            practice.
+          </li>
+        </ol>
+      </div>
     </div>
 
     <div id="bottomText">Powered by Kitthinut Changtham 6703</div>

@@ -25,6 +25,108 @@ body {
   z-index: 0;
 }
 
+/* ===== Layout Wrapper for Team Panel + App ===== */
+.layout-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+/* ===== Side-by-Side Panels ===== */
+.panels-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 30px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+/* ===== Team Panel ===== */
+.team-panel {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid #d580ff;
+  border-radius: 15px;
+  padding: 20px;
+  min-width: 250px;
+  color: #e5d4ff;
+  font-size: 0.95rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.team-panel h2 {
+  font-size: 1.5rem;
+  color: #ffc4ff;
+  margin-bottom: 10px;
+}
+
+.team-panel ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 10px 0;
+}
+
+.team-panel li {
+  margin-bottom: 6px;
+}
+
+.team-panel .motto {
+  font-style: italic;
+  margin-top: 10px;
+  color: #c6a2ff;
+}
+
+/* ===== Guide Panel ===== */
+.guide-panel {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid #d580ff;
+  border-radius: 15px;
+  padding: 20px;
+  min-width: 250px;
+  color: #e5d4ff;
+  font-size: 1rem;
+  line-height: 1.6; /* Increased line height for readability */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.guide-panel h2 {
+  font-size: 1.8rem;
+  color: #ffc4ff;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.guide-panel ol {
+  margin-left: 20px;
+  padding-left: 0;
+  font-size: 1.1rem;
+}
+
+.guide-panel li {
+  margin-bottom: 12px; /* Added space between steps for clarity */
+}
+
+.guide-panel li::marker {
+  color: #d580ff; /* Custom bullet color */
+  font-size: 1.3rem; /* Increase bullet size for emphasis */
+}
+
+/* Hover effect for guide panel */
+.guide-panel:hover {
+  transform: scale(1.02); /* Slightly enlarges on hover for emphasis */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
 /* ===== Main Container ===== */
 .app-container {
   width: 90%;
@@ -156,7 +258,7 @@ h1 {
   }
 }
 
-/* Landscape (Phones in landscape orientation) */
+/* ===== Landscape (Phones in landscape orientation) */
 @media only screen and (max-width: 768px) and (orientation: landscape) {
   .app-container {
     padding: 20px;
