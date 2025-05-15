@@ -13,7 +13,7 @@ export class Calculator {
 
   // Converts degrees to radians for angle calculations.
   toRadians(deg) {
-    return deg * Math.PI / 180;
+    return (deg * Math.PI) / 180;
   }
 
   // Calculates the horizontal and vertical components of the distance between two points.
@@ -34,11 +34,14 @@ export class Calculator {
     const cosθ = Math.cos(θ);
     const sinθ = Math.sin(θ);
 
-    const numerator = (this.racketMass - this.e * this.ballMass) * this.uracket * sinθ - this.ballMass * this.uball * cosθ;
+    const numerator =
+      (this.racketMass - this.e * this.ballMass) * this.uracket * sinθ -
+      this.ballMass * this.uball * cosθ;
     const denominator = this.racketMass + this.ballMass;
     const vRacket = numerator / denominator;
 
-    const vBall = this.uracket + this.e * this.uball * cosθ + this.e * this.uracket * sinθ;
+    const vBall =
+      this.uracket + this.e * this.uball * cosθ + this.e * this.uracket * sinθ;
 
     const tanAlpha = vBall / (this.uball * sinθ);
     const alpha = Math.atan(tanAlpha);
@@ -47,7 +50,9 @@ export class Calculator {
     const cosDiff = Math.cos(diffAngle);
     const sinDiff = Math.sin(diffAngle);
 
-    const magU = Math.sqrt(vBall * vBall + (this.uball * sinθ) * (this.uball * sinθ));
+    const magU = Math.sqrt(
+      vBall * vBall + this.uball * sinθ * (this.uball * sinθ)
+    );
 
     const underSqrt = (magU * sinDiff) ** 2 + 4 * this.g * this.h;
     if (underSqrt < 0 || isNaN(magU)) return "Impossible";
@@ -88,5 +93,23 @@ export class Calculator {
 
     ranges.push({ min: start, max: matchingAngles[matchingAngles.length - 1] });
     return ranges;
+  }
+
+  // Calculates the angle in degrees from dx and dy.
+  FindRotationAngle(dx, dy) {
+    const angleRad = Math.atan2(dy, dx);
+    let angleDeg = (angleRad * 180) / Math.PI;
+
+    // Shift reference so left is 0°
+    angleDeg = angleDeg - 180;
+
+    // Convert to symmetrical angle: mirror bottom into negatives
+    if (angleDeg > 90) {
+      angleDeg = angleDeg - 360;
+    } else if (angleDeg < -90) {
+      angleDeg = angleDeg + 360;
+    }
+
+    return angleDeg;
   }
 }

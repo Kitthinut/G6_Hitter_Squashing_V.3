@@ -312,3 +312,26 @@ h1 {
     max-height: 60vh;
   }
 }
+
+.layout-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.side-image {
+  flex-shrink: 0;
+  height: 80vh; 
+  display: flex;
+  align-items: center;
+}
+
+.side-image img {
+  height: 80%;
+  width: auto; 
+  border-radius: 12px;
+}

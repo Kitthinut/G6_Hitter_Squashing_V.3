@@ -2,7 +2,6 @@ import { mapData } from "./mapsettings.js";
 import { Settings } from "./settings.js";
 import { Calculator } from "./calculator.js";
 class MapApp {
-  
   constructor(canvasId) {
     // Get canvas and set context
     this.canvas = document.getElementById(canvasId);
@@ -52,7 +51,13 @@ class MapApp {
   // Draws the map and the start point on the canvas
   drawMap() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.drawImage(this.mapImage, 0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.drawImage(
+      this.mapImage,
+      0,
+      0,
+      this.canvas.width,
+      this.canvas.height
+    );
     this.ctx.fillStyle = "blue";
     this.ctx.beginPath();
     this.ctx.arc(this.startX, this.startY, 15, 0, Math.PI * 2); // Start point
@@ -74,13 +79,25 @@ class MapApp {
     this.drawLines(realX, realY);
 
     // Get distance components and calculate the real-world distance
-    const { dx, dy, distance: realDistance } = this.calculator.getDistanceComponents(realX, realY, this.startX, this.startY, this.scale);
+    const {
+      dx,
+      dy,
+      distance: realDistance,
+    } = this.calculator.getDistanceComponents(
+      realX,
+      realY,
+      this.startX,
+      this.startY,
+      this.scale
+    );
 
     // Log coordinates and distances
     console.log(`Coordinates: (${Math.round(realX)}, ${Math.round(realY)})`);
     console.log(`X-Distance: ${dx.toFixed(2)} m`);
     console.log(`Y-Distance: ${dy.toFixed(2)} m`);
-    document.getElementById("distance").textContent = `Distance: ${realDistance.toFixed(2)} m`;
+    document.getElementById(
+      "distance"
+    ).textContent = `Distance: ${realDistance.toFixed(2)} m`;
 
     // Find the best launch angle based on the calculated distance
     const ranges = this.calculator.findBestAngle(realDistance);
@@ -92,12 +109,21 @@ class MapApp {
     } else {
       // Display the angle range(s) if valid
       const rangeText = ranges
-        .map(r => `${r.min - 1}°– ${r.max + 5}°`)  // Adjust manually for better accuracy
+        .map((r) => `${r.min - 1}°– ${r.max + 5}°`) // Adjust manually for better accuracy
         .join(" or ");
       console.log(`Launch Angle: ${rangeText}`);
-      document.getElementById("angle").textContent = `Launch Angle: ${rangeText}`;
+      document.getElementById(
+        "angle"
+      ).textContent = `Launch Angle: ${rangeText}`;
     }
-    
+
+    // Calculate and display the Machine Angle (absolute angle from start point)
+    const machineAngle = this.calculator.FindRotationAngle(dx, dy);
+    console.log(`Machine Angle: ${machineAngle.toFixed(2)}°`);
+    document.getElementById(
+      "machine-angle"
+    ).textContent = `Machine Angle: ${machineAngle.toFixed(2)}°`;
+
     // Provide feedback with a red circle at the click location
     this.showClickFeedback(realX, realY);
   }
