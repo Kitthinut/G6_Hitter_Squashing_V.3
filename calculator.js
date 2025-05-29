@@ -1,13 +1,13 @@
 export class Calculator {
   // Private fields for internal use only within this class
-  #g;            // Gravitational acceleration (m/s²)
-  #settings;     // Settings object containing initial parameters
-  #racketMass;   // Mass of the racket (kg)
-  #ballMass;     // Mass of the ball (kg)
-  #e;            // Coefficient of restitution (elasticity of collision)
-  #uball;        // Initial velocity of the ball (m/s)
-  #uracket;      // Initial velocity of the racket (m/s)
-  #h;            // Initial height from which the ball is hit (m)
+  #g; // Gravitational acceleration (m/s²)
+  #settings; // Settings object containing initial parameters
+  #racketMass; // Mass of the racket (kg)
+  #ballMass; // Mass of the ball (kg)
+  #e; // Coefficient of restitution (elasticity of collision)
+  #uball; // Initial velocity of the ball (m/s)
+  #uracket; // Initial velocity of the racket (m/s)
+  #h; // Initial height from which the ball is hit (m)
 
   // Constructor: Initializes private parameters using the provided settings
   constructor(settings) {
@@ -53,7 +53,9 @@ export class Calculator {
 
     // Calculate resulting ball velocity after impact
     const vBall =
-      this.#uracket + this.#e * this.#uball * cosθ + this.#e * this.#uracket * sinθ;
+      this.#uracket +
+      this.#e * this.#uball * cosθ +
+      this.#e * this.#uracket * sinθ;
 
     // Compute launch angle (alpha) after impact using velocity vector components
     const tanAlpha = vBall / (this.#uball * sinθ);
@@ -127,6 +129,11 @@ export class Calculator {
       angleDeg = angleDeg - 360;
     } else if (angleDeg < -90) {
       angleDeg = angleDeg + 360;
+    }
+
+    // Check if angle is within allowed range
+    if (angleDeg < -90 || angleDeg > 90) {
+      return "impossible";
     }
 
     return angleDeg;
