@@ -17,7 +17,7 @@ class MapApp {
       console.error(`Failed to load map image at: maps/${this.mapName}`);
     };
 
-    // Get map settings 
+    // Get map settings
     const mapSettings = mapData[this.mapName];
     if (!mapSettings) {
       console.error("No map settings found for", this.mapName);
@@ -27,7 +27,7 @@ class MapApp {
 
     // Initialize settings and calculator
     this.settings = new Settings();
-    this.calculator = new Calculator(this.settings); 
+    this.calculator = new Calculator(this.settings);
 
     // Set map start position, scale, and real-world dimensions
     this.startX = mapSettings.startX;
@@ -84,7 +84,7 @@ class MapApp {
       dx,
       dy,
       distance: realDistance,
-    } = this.calculator.getDistanceComponents( 
+    } = this.calculator.getDistanceComponents(
       realX,
       realY,
       this.startX,
@@ -120,10 +120,17 @@ class MapApp {
 
     // Calculate and display the Machine Angle (absolute angle from start point)
     const machineAngle = this.calculator.FindRotationAngle(dx, dy);
-    console.log(`Machine Angle: ${machineAngle.toFixed(2)}°`);
-    document.getElementById(
-      "machine-angle"
-    ).textContent = `Machine Angle: ${machineAngle.toFixed(2)}°`;
+
+    if (machineAngle === "impossible") {
+      document.getElementById(
+        "machine-angle"
+      ).textContent = `Machine Angle: impossible`;
+    } else {
+      console.log(`Machine Angle: ${machineAngle.toFixed(2)}°`);
+      document.getElementById(
+        "machine-angle"
+      ).textContent = `Machine Angle: ${machineAngle.toFixed(2)}°`;
+    }
 
     // Provide feedback with a red circle at the click location
     this.showClickFeedback(realX, realY);

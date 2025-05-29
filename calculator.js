@@ -132,7 +132,7 @@ export class Calculator {
     }
 
     // Check if angle is within allowed range
-    if (angleDeg < -90 || angleDeg > 90) {
+    if (angleDeg < -85 || angleDeg > 85) {
       return "impossible";
     }
 
