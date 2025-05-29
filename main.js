@@ -17,16 +17,17 @@ class MapApp {
       console.error(`Failed to load map image at: maps/${this.mapName}`);
     };
 
-    // Get map settings
+    // Get map settings 
     const mapSettings = mapData[this.mapName];
     if (!mapSettings) {
       console.error("No map settings found for", this.mapName);
       return;
     }
+    
 
     // Initialize settings and calculator
     this.settings = new Settings();
-    this.calculator = new Calculator(this.settings);
+    this.calculator = new Calculator(this.settings); 
 
     // Set map start position, scale, and real-world dimensions
     this.startX = mapSettings.startX;
@@ -83,7 +84,7 @@ class MapApp {
       dx,
       dy,
       distance: realDistance,
-    } = this.calculator.getDistanceComponents(
+    } = this.calculator.getDistanceComponents( 
       realX,
       realY,
       this.startX,

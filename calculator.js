@@ -1,14 +1,24 @@
 export class Calculator {
-  // Constructor: Initializes the calculator with the provided settings and default constants.
+  // Private fields for internal use only within this class
+  #g;            // Gravitational acceleration (m/s²)
+  #settings;     // Settings object containing initial parameters
+  #racketMass;   // Mass of the racket (kg)
+  #ballMass;     // Mass of the ball (kg)
+  #e;            // Coefficient of restitution (elasticity of collision)
+  #uball;        // Initial velocity of the ball (m/s)
+  #uracket;      // Initial velocity of the racket (m/s)
+  #h;            // Initial height from which the ball is hit (m)
+
+  // Constructor: Initializes private parameters using the provided settings
   constructor(settings) {
-    this.g = 9.81; // Gravitational acceleration
-    this.settings = settings;
-    this.racketMass = settings.racketMass;
-    this.ballMass = settings.ballMass;
-    this.e = settings.e; // Coefficient of restitution
-    this.uball = settings.uball;
-    this.uracket = settings.uracket;
-    this.h = settings.h;
+    this.#g = 9.81;
+    this.#settings = settings;
+    this.#racketMass = settings.racketMass;
+    this.#ballMass = settings.ballMass;
+    this.#e = settings.e;
+    this.#uball = settings.uball;
+    this.#uracket = settings.uracket;
+    this.#h = settings.h;
   }
 
   // Converts degrees to radians for angle calculations.
@@ -16,7 +26,7 @@ export class Calculator {
     return (deg * Math.PI) / 180;
   }
 
-  // Calculates the horizontal and vertical components of the distance between two points.
+  // Calculates the horizontal and vertical distance components between two points, scaled to real-world units.
   getDistanceComponents(realX, realY, startX, startY, scale) {
     const dx = (realX - startX) / scale;
     const dy = (realY - startY) / scale;
@@ -28,47 +38,55 @@ export class Calculator {
     };
   }
 
-  // Simulates the distance traveled by the ball given an angle.
+  // Simulates the horizontal distance the ball travels based on the hit angle.
   simulateDistance(thetaDeg) {
     const θ = this.toRadians(thetaDeg);
     const cosθ = Math.cos(θ);
     const sinθ = Math.sin(θ);
 
+    // Calculate relative velocity of the racket impacting the ball
     const numerator =
-      (this.racketMass - this.e * this.ballMass) * this.uracket * sinθ -
-      this.ballMass * this.uball * cosθ;
-    const denominator = this.racketMass + this.ballMass;
+      (this.#racketMass - this.#e * this.#ballMass) * this.#uracket * sinθ -
+      this.#ballMass * this.#uball * cosθ;
+    const denominator = this.#racketMass + this.#ballMass;
     const vRacket = numerator / denominator;
 
+    // Calculate resulting ball velocity after impact
     const vBall =
-      this.uracket + this.e * this.uball * cosθ + this.e * this.uracket * sinθ;
+      this.#uracket + this.#e * this.#uball * cosθ + this.#e * this.#uracket * sinθ;
 
-    const tanAlpha = vBall / (this.uball * sinθ);
+    // Compute launch angle (alpha) after impact using velocity vector components
+    const tanAlpha = vBall / (this.#uball * sinθ);
     const alpha = Math.atan(tanAlpha);
     const diffAngle = alpha - θ;
 
     const cosDiff = Math.cos(diffAngle);
     const sinDiff = Math.sin(diffAngle);
 
+    // Magnitude of combined initial velocity vector
     const magU = Math.sqrt(
-      vBall * vBall + this.uball * sinθ * (this.uball * sinθ)
+      vBall * vBall + this.#uball * sinθ * (this.#uball * sinθ)
     );
 
-    const underSqrt = (magU * sinDiff) ** 2 + 4 * this.g * this.h;
+    // Check if solution is physically possible (e.g. not negative inside sqrt)
+    const underSqrt = (magU * sinDiff) ** 2 + 4 * this.#g * this.#h;
     if (underSqrt < 0 || isNaN(magU)) return "Impossible";
 
-    const time = (magU * sinDiff + Math.sqrt(underSqrt)) / (2 * this.g);
+    // Time in the air using kinematic equations
+    const time = (magU * sinDiff + Math.sqrt(underSqrt)) / (2 * this.#g);
+
+    // Horizontal distance traveled = velocity * time
     const distance = magU * cosDiff * time;
 
     if (isNaN(distance) || !isFinite(distance)) return "Impossible";
     return distance;
   }
 
-  // Finds the best angle for a target distance, within a given tolerance.
+  // Finds all possible launch angles that allow the ball to reach the target distance within a given tolerance.
   findBestAngle(targetDistance, tolerance = 0.05) {
     const matchingAngles = [];
 
-    // Iterate through possible angles to find those that match the target distance within tolerance.
+    // Test all angles from 1 to 90 degrees
     for (let theta = 1; theta <= 90; theta++) {
       const distance = this.simulateDistance(theta);
       if (distance === "Impossible") continue;
@@ -80,7 +98,7 @@ export class Calculator {
 
     if (matchingAngles.length === 0) return "Impossible";
 
-    // Create ranges for matching angles
+    // Group contiguous angles into ranges
     const ranges = [];
     let start = matchingAngles[0];
 
@@ -91,19 +109,20 @@ export class Calculator {
       }
     }
 
+    // Add the last range
     ranges.push({ min: start, max: matchingAngles[matchingAngles.length - 1] });
     return ranges;
   }
 
-  // Calculates the angle in degrees from dx and dy.
+  // Calculates the angle in degrees from a vector (dx, dy) relative to the leftward horizontal.
   FindRotationAngle(dx, dy) {
     const angleRad = Math.atan2(dy, dx);
     let angleDeg = (angleRad * 180) / Math.PI;
 
-    // Shift reference so left is 0°
+    // Set leftward (180°) as 0° reference
     angleDeg = angleDeg - 180;
 
-    // Convert to symmetrical angle: mirror bottom into negatives
+    // Normalize angle to range [-90°, 90°]
     if (angleDeg > 90) {
       angleDeg = angleDeg - 360;
     } else if (angleDeg < -90) {
