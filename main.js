@@ -23,7 +23,6 @@ class MapApp {
       console.error("No map settings found for", this.mapName);
       return;
     }
-    
 
     // Initialize settings and calculator
     this.settings = new Settings();
@@ -63,6 +62,17 @@ class MapApp {
     this.ctx.beginPath();
     this.ctx.arc(this.startX, this.startY, 15, 0, Math.PI * 2); // Start point
     this.ctx.fill();
+
+    // Debug by using color mark
+    // const { clickableArea } = mapData[this.mapName];
+    // this.ctx.strokeStyle = "rgba(0,255,0,0.6)";
+    // this.ctx.lineWidth = 4;
+    // this.ctx.strokeRect(
+    //   clickableArea.x,
+    //   clickableArea.y,
+    //   clickableArea.width,
+    //   clickableArea.height
+    // );
   }
 
   // Handles the click event to calculate and display distance and angle
@@ -71,6 +81,19 @@ class MapApp {
     const rect = this.canvas.getBoundingClientRect();
     const x = (e.clientX - rect.left) * (this.canvas.width / rect.width);
     const y = (e.clientY - rect.top) * (this.canvas.height / rect.height);
+
+    const { clickableArea } = mapData[this.mapName];
+
+    // Ignore click if out of bounds
+    if (
+      x < clickableArea.x ||
+      x > clickableArea.x + clickableArea.width ||
+      y < clickableArea.y ||
+      y > clickableArea.y + clickableArea.height
+    ) {
+      console.log("Click outside interactive area.");
+      return;
+    }
 
     const realX = x;
     const realY = y;

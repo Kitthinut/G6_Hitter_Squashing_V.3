@@ -6,6 +6,8 @@ export const mapData = {
     startY: 2000,
     imgWidth: 5669,
     imgHeight: 4000,
+    //Clickable only the map place
+    clickableArea: { x: 0, y: 0, width: 4030, height: 4000 }
   },
   "map2.png": {
     //Twice size map
@@ -14,6 +16,8 @@ export const mapData = {
     startY: 1000,
     imgWidth: 4925,
     imgHeight: 2000,
+    //Clickable only the map place
+    clickableArea: { x: 0, y: 0, width: 4050, height: 2000 }
   },
   "map3.png": {
     //With Angle Map
@@ -22,5 +26,7 @@ export const mapData = {
     startY: 2000,
     imgWidth: 5669,
     imgHeight: 4000,
-  },
+    //Clickable only the map place
+    clickableArea: { x: 0, y: 0, width: 4030, height: 4000 }
+  }
 };
