@@ -1,24 +1,24 @@
 export class Calculator {
-  // Private fields for internal use only within this class
-  #g; // Gravitational acceleration (m/s²)
-  #settings; // Settings object containing initial parameters
-  #racketMass; // Mass of the racket (kg)
-  #ballMass; // Mass of the ball (kg)
-  #e; // Coefficient of restitution (elasticity of collision)
-  #uball; // Initial velocity of the ball (m/s)
-  #uracket; // Initial velocity of the racket (m/s)
-  #h; // Initial height from which the ball is hit (m)
+  #g;           // ค่าคงที่ของแรงโน้มถ่วง (9.81 m/s²)
+  #settings;    // อ็อบเจกต์ตั้งค่าเริ่มต้นที่รับจาก constructor
+  #racketMass;  // มวลของไม้ตี (kg)
+  #ballMass;    // มวลของลูกบอล (kg)
+  #e;           // ค่าสัมประสิทธิ์การคืนตัว (elasticity of collision)
+  #uball;       // ความเร็วเริ่มต้นของลูกบอลก่อนชน (m/s)
+  #uracket;     // ความเร็วของไม้ก่อนชน (m/s)
+  #h;           // ความสูงที่ลูกถูกตีจากพื้น (m)
 
   // Constructor: Initializes private parameters using the provided settings
   constructor(settings) {
-    this.#g = 9.81;
-    this.#settings = settings;
-    this.#racketMass = settings.racketMass;
-    this.#ballMass = settings.ballMass;
-    this.#e = settings.e;
-    this.#uball = settings.uball;
-    this.#uracket = settings.uracket;
-    this.#h = settings.h;
+    // ดึงค่ามาจาก settings
+    this.#g = 9.81;                         // ค่าคงที่ของแรงโน้มถ่วง (m/s²)
+    this.#settings = settings;              // อ็อบเจกต์ตั้งค่าเริ่มต้นที่รับจาก constructor
+    this.#racketMass = settings.racketMass; // มวลของไม้ตี (kg)
+    this.#ballMass = settings.ballMass;     // มวลของลูกบอล (kg)
+    this.#e = settings.e;                   // ค่าสัมประสิทธิ์การคืนตัว (elasticity of collision)
+    this.#uball = settings.uball;           // ความเร็วเริ่มต้นของลูกบอลก่อนชน (m/s)
+    this.#uracket = settings.uracket;       // ความเร็วของไม้ก่อนชน (m/s)
+    this.#h = settings.h;                   // ความสูงที่ลูกถูกตีจากพื้น (m)
   }
 
   // Converts degrees to radians for angle calculations.
@@ -59,8 +59,8 @@ export class Calculator {
 
     // Compute launch angle (alpha) after impact using velocity vector components
     const tanAlpha = vBall / (this.#uball * sinθ);
-    const alpha = Math.atan(tanAlpha);
-    const diffAngle = alpha - θ;
+    const alpha = Math.atan(tanAlpha); // มุมยิง alpha
+    const diffAngle = alpha - θ; // มุมต่างระหว่างมุมยิงกับมุมที่ตี
 
     const cosDiff = Math.cos(diffAngle);
     const sinDiff = Math.sin(diffAngle);
