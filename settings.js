@@ -11,12 +11,12 @@ export class Settings {
     this.racketMass = parseFloat(localStorage.getItem("racketMass")) || 0.386;
     this.ballMass = parseFloat(localStorage.getItem("ballMass")) || 0.024;
     this.e = parseFloat(localStorage.getItem("e")) || 0.42;
-    this.uball = parseFloat(localStorage.getItem("uball")) || 5.87;
+    this.launcher_height = parseFloat(localStorage.getItem("launcher_height")) || 2.0;
     this.selectedMap = localStorage.getItem("selectedMap") || "map1.png"; 
   }
 
   // Initialize form and events
-  init() {
+  init() {                                                                                   
     this.loadSettings();
     this.updateMapPreview(); // Show the preview for the default or saved map
 
@@ -46,7 +46,7 @@ export class Settings {
     document.getElementById("racketMass").value = getOrDefault("racketMass", 0.386);
     document.getElementById("e").value = getOrDefault("e", 0.42);
     document.getElementById("ballMass").value = getOrDefault("ballMass", 0.024);
-    document.getElementById("uball").value = getOrDefault("uball", 5.87);
+    document.getElementById("launcher_height").value = getOrDefault("launcher_height", 2.0);
     document.getElementById("uracket").value = getOrDefault("uracket", 3.5);
   }
 
@@ -57,7 +57,7 @@ export class Settings {
     localStorage.setItem("e", document.getElementById("e").value);
     localStorage.setItem("ballMass", document.getElementById("ballMass").value);
     localStorage.setItem("uracket", document.getElementById("uracket").value);
-    localStorage.setItem("uball", document.getElementById("uball").value);
+    localStorage.setItem("launcher_height", document.getElementById("launcher_height").value);
 
     alert("Settings saved successfully!");
   }
@@ -69,7 +69,7 @@ export class Settings {
     document.getElementById("e").value = 0.42;
     document.getElementById("ballMass").value = 0.024;
     document.getElementById("uracket").value = 3.5;
-    document.getElementById("uball").value = 5.87;
+    document.getElementById("launcher_height").value = 2.0;
     this.saveSettings();
   }
 

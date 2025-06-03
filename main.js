@@ -116,6 +116,7 @@ class MapApp {
     );
 
     // Log coordinates and distances
+    console.log(`------------ New Clicked ------------`);
     console.log(`Coordinates: (${Math.round(realX)}, ${Math.round(realY)})`);
     console.log(`X-Distance: ${dx.toFixed(2)} m`);
     console.log(`Y-Distance: ${dy.toFixed(2)} m`);
@@ -193,3 +194,5 @@ class MapApp {
 
 // Initialize the MapApp with the given canvas ID
 new MapApp("mapCanvas");
+
+

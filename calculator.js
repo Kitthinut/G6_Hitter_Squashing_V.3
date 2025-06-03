@@ -1,24 +1,30 @@
 export class Calculator {
-  #g;           // ค่าคงที่ของแรงโน้มถ่วง (9.81 m/s²)
-  #settings;    // อ็อบเจกต์ตั้งค่าเริ่มต้นที่รับจาก constructor
-  #racketMass;  // มวลของไม้ตี (kg)
-  #ballMass;    // มวลของลูกบอล (kg)
-  #e;           // ค่าสัมประสิทธิ์การคืนตัว (elasticity of collision)
-  #uball;       // ความเร็วเริ่มต้นของลูกบอลก่อนชน (m/s)
-  #uracket;     // ความเร็วของไม้ก่อนชน (m/s)
-  #h;           // ความสูงที่ลูกถูกตีจากพื้น (m)
+  #g; // ค่าคงที่ของแรงโน้มถ่วง (9.81 m/s²)
+  #settings; // อ็อบเจกต์ตั้งค่าเริ่มต้นที่รับจาก constructor
+  #racketMass; // มวลของไม้ตี (kg)
+  #ballMass; // มวลของลูกบอล (kg)
+  #e; // ค่าสัมประสิทธิ์การกระดอน
+  #uball; // ความเร็วเริ่มต้นของลูกบอลก่อนชน (m/s)
+  #uracket; // ความเร็วของไม้ก่อนชน (m/s)
+  #h; // ความสูงที่ลูกถูกตีจากพื้น (m)
+  #launcher_height; // ความสูงของเครื่องตี (m)
+  #time; // เวลาในการเคลื่อนที่ของลูกบอล (s)
 
   // Constructor: Initializes private parameters using the provided settings
   constructor(settings) {
     // ดึงค่ามาจาก settings
-    this.#g = 9.81;                         // ค่าคงที่ของแรงโน้มถ่วง (m/s²)
-    this.#settings = settings;              // อ็อบเจกต์ตั้งค่าเริ่มต้นที่รับจาก constructor
+    this.#g = 9.81; // ค่าคงที่ของแรงโน้มถ่วง (m/s²)
+    this.#settings = settings; // อ็อบเจกต์ตั้งค่าเริ่มต้นที่รับจาก constructor
     this.#racketMass = settings.racketMass; // มวลของไม้ตี (kg)
-    this.#ballMass = settings.ballMass;     // มวลของลูกบอล (kg)
-    this.#e = settings.e;                   // ค่าสัมประสิทธิ์การคืนตัว (elasticity of collision)
-    this.#uball = settings.uball;           // ความเร็วเริ่มต้นของลูกบอลก่อนชน (m/s)
-    this.#uracket = settings.uracket;       // ความเร็วของไม้ก่อนชน (m/s)
-    this.#h = settings.h;                   // ความสูงที่ลูกถูกตีจากพื้น (m)
+    this.#ballMass = settings.ballMass; // มวลของลูกบอล (kg)
+    this.#e = settings.e; // ค่าสัมประสิทธิ์การกระดอน
+    this.#launcher_height = settings.launcher_height; // ความสูงของเครื่องตี (m)
+    this.#uracket = settings.uracket; // ความเร็วของไม้ก่อนชน (m/s)
+    this.#h = settings.h; // ความสูงที่ลูกถูกตีจากพื้น (m)
+
+    // คำนวณความเร็วเริ่มต้นของลูกบอลก่อนชน
+    this.#time = Math.sqrt((2 * (this.#launcher_height - this.#h)) / this.#g);
+    this.#uball = this.#g * this.#time;
   }
 
   // Converts degrees to radians for angle calculations.
