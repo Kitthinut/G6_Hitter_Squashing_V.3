@@ -134,7 +134,7 @@ class MapApp {
     } else {
       // Display the angle range(s) if valid
       const rangeText = ranges
-        .map((r) => `${r.min - 1}°– ${r.max + 5}°`) // Adjust manually for better accuracy
+        .map((r) => `${r.min - 1}°– ${r.max + 3}°`) // Adjust manually for better accuracy
         .join(" or ");
       console.log(`Launch Angle: ${rangeText}`);
       document.getElementById(

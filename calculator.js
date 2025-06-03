@@ -116,10 +116,11 @@ export class Calculator {
         start = matchingAngles[i];
       }
     }
-
     // Add the last range
     ranges.push({ min: start, max: matchingAngles[matchingAngles.length - 1] });
-    return ranges;
+
+    // Return only the last range (highest angles)
+    return [ranges[ranges.length - 1]];
   }
 
   // Calculates the angle in degrees from a vector (dx, dy) relative to the leftward horizontal.
