@@ -143,6 +143,6 @@ export class Calculator {
       return "impossible";
     }
 
-    return angleDeg;
+    return Math.round(angleDeg);
   }
 }
